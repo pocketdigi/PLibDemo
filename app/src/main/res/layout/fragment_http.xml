@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="output"
+            type="String" />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:background="#ebeaea"
+            android:id="@+id/scrollViewOutput"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <TextView
+                android:text="@{output}"
+                android:paddingLeft="@dimen/content_horizontal_padding"
+                android:paddingRight="@dimen/content_horizontal_padding"
+                android:paddingTop="@dimen/content_vertical_padding"
+                android:paddingBottom="@dimen/content_vertical_padding"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+        <Button
+            android:id="@+id/btnGet"
+            android:text="GET"
+            android:layout_below="@+id/scrollViewOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnPOST"
+            android:text="POST"
+            android:layout_toRightOf="@+id/btnGet"
+            android:layout_alignTop="@+id/btnGet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnPOSTJSON"
+            android:text="POST JSON"
+            android:layout_alignTop="@+id/btnGet"
+            android:layout_toRightOf="@+id/btnPOST"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnDownload"
+            android:text="下载文件"
+            android:layout_below="@+id/btnGet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnDownloadCancel"
+            android:text="下载取消"
+            android:layout_toRightOf="@+id/btnDownload"
+            android:layout_below="@+id/btnGet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnUpload"
+            android:text="上传文件"
+            android:layout_below="@+id/btnDownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnUploadCancel"
+            android:text="上传取消"
+            android:layout_below="@+id/btnDownload"
+            android:layout_toRightOf="@+id/btnUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</layout>
