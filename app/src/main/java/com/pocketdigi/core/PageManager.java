@@ -28,12 +28,6 @@ import dalvik.system.DexClassLoader;
  * Page管理器,必须是单Activity
  * PageManager在整个Activity生命周期中只能实例化一次,在Activity的onDestory中销毁
  * 销毁后不允许再调任何方法
- * 支持补丁，补丁路径为/data/data/包名/files/patch/完整原类名.jar,
- * 补丁类名为原类路径类名前加patch,
- * 比如，原类名为com.tqmall.yunxiu.about.AboutFragment_,那么补丁的类名为com.tqmall.yunxiu.about.patch.AboutFragment_
- * <p/>
- * <p/>
- * Created by fhp on 14-9-2.
  */
 public class PageManager {
     private static PageManager instance;
