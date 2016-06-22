@@ -14,8 +14,7 @@ import com.pocketdigi.template.model.Person;
  * Created by Exception on 16/6/4.
  */
 public class Client {
-    public static final String API_PREFIX="http://200346.vhost346.cloudvhost.cn/index.php/Api/Index/";
-//    public static final String API_PREFIX="http://192.168.199.204/wechat/index.php/Api/Index/";
+    public static final String API_PREFIX="http://192.168.199.204/wechat/index.php/Api/Index/";
 
     public static PDownFileRequest downloadFile(String url, String savePath, DownProgressListener listener) {
         PDownFileRequest pDownFileRequest = new PDownFileRequest(url, savePath,listener);
@@ -24,19 +23,19 @@ public class Client {
     }
 
     public static void postObject(Person person,PResponseListener<String> listener) {
-        PRequest<String> request=new PRequest<>(PRequest.POST,  API_PREFIX+"add", listener,String.class);
+        PRequest<String> request=new SignPRequest<>(PRequest.POST,  API_PREFIX+"add", listener,String.class);
         request.setPostObject(person);
         PHttp.getInstance().addRequest(request);
     }
 
     public static void post(PResponseListener<String> listener) {
-        PRequest<String> request=new PRequest<>(PRequest.POST, API_PREFIX+"add", listener,String.class);
+        PRequest<String> request=new SignPRequest<>(PRequest.POST, API_PREFIX+"add", listener,String.class);
         request.addParam("p1","value1");
         request.addParam("p2","value2");
         PHttp.getInstance().addRequest(request);
     }
     public static void get(PResponseListener<String> listener) {
-        PRequest<String> request=new PRequest<>(API_PREFIX+"add", listener,String.class);
+        PRequest<String> request=new SignPRequest<>(API_PREFIX+"add", listener,String.class);
         PHttp.getInstance().addRequest(request);
     }
 
@@ -45,7 +44,6 @@ public class Client {
         PHttp.getInstance().addRequest(request);
         return request;
     }
-
 
 
     public static void getBaiduImageList(PResponseListener<BaiduImageResult> listener,int page){

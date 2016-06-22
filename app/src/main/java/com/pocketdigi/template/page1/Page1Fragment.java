@@ -1,9 +1,13 @@
 package com.pocketdigi.template.page1;
 
+import android.os.Bundle;
+
 import com.pocketdigi.core.PageManager;
 import com.pocketdigi.core.SFragment;
+import com.pocketdigi.plib.core.PLog;
 import com.pocketdigi.template.R;
 import com.pocketdigi.template.http.HttpDemoFragment_;
+import com.pocketdigi.template.page2.Page2Fragment;
 import com.pocketdigi.template.page2.Page2Fragment_;
 
 import org.androidannotations.annotations.Click;
@@ -28,7 +32,15 @@ public class Page1Fragment extends SFragment {
 
 
     @Override
+    protected void onReShow() {
+        super.onReShow();
+        Bundle resultArgs = getResultArgs();
+        PLog.d(this,resultArgs.getString(Page2Fragment.BUNDLE_KEY_ARG));
+    }
+
+    @Override
     public boolean isRootPage() {
         return true;
     }
+
 }

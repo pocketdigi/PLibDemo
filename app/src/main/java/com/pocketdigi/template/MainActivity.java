@@ -18,13 +18,11 @@ public class MainActivity extends PFragmentActivity implements PageManager.PageS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
-        PageManager.newInstance().setPageShowListener(this);
+        PageManager.getInstance().setPageShowListener(this);
         MobclickAgent.setDebugMode(BuildConfig.DEBUG);
         //umeng
         MobclickAgent.UMAnalyticsConfig config=new MobclickAgent.UMAnalyticsConfig(this,"umengkey",BuildConfig.FLAVOR);
         MobclickAgent.startWithConfigure(config);
-
-
 
     }
     @AfterViews
@@ -39,8 +37,8 @@ public class MainActivity extends PFragmentActivity implements PageManager.PageS
         super.onBackPressed();
         if (!backProcessed) {
             if (!PageManager.getInstance().back()) {
-                if (PageManager.getInstance().inFirstPage()) {
-                    //当前在首页
+                if (PageManager.getInstance().isOnRoot()) {
+                    //当前在根页面
                     finish();
                 }
             }

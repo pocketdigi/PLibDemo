@@ -3,11 +3,7 @@ package com.pocketdigi.template.http;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
-import android.os.Environment;
-import android.os.Looper;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.pocketdigi.core.SFragment;
 import com.pocketdigi.plib.core.PLog;
@@ -39,10 +35,9 @@ public class HttpDemoFragment extends SFragment {
     PDownFileRequest downFileRequest;
     PUploadRequest uploadRequest;
     public static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 1;
-
     @AfterViews
     public void afterViews() {
-        dataBinding = DataBindingUtil.bind(getView());
+         dataBinding = DataBindingUtil.bind(getView());
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             //申请WRITE_EXTERNAL_STORAGE权限
@@ -61,13 +56,13 @@ public class HttpDemoFragment extends SFragment {
 
             @Override
             public void onError(PRequest request, Exception e) {
-                dataBinding.setOutput(e.toString());
+
             }
         });
     }
 
     @Click
-    public void btnPOST() {
+    public void btnPOST(){
         Client.post(new PResponseListener<String>() {
             @Override
             public void onResponse(PRequest request, String response) {
@@ -83,19 +78,14 @@ public class HttpDemoFragment extends SFragment {
 
     @Click
     public void btnPOSTJSON() {
-        Person person = new Person();
+        Person person=new Person();
         person.setAge(10);
         person.setName("王大头");
         person.setPhone("12343344");
         Client.postObject(person, new PResponseListener<String>() {
             @Override
             public void onResponse(PRequest request, String response) {
-                PLog.d(this, response);
-                String name = this.getClass().getName();
-                PLog.d(name, response);
-                PLog.d("abc", response);
                 dataBinding.setOutput(response);
-
             }
 
             @Override
@@ -108,7 +98,7 @@ public class HttpDemoFragment extends SFragment {
     @Click
     public void btnDownload() {
         String savePath = RuntimeUtil.getContextFilesDir(getActivity()) + "/WindowsXP_SP2.exe";
-        if (downFileRequest != null)
+        if(downFileRequest!=null)
             downFileRequest.cancel();
         downFileRequest = Client.downloadFile("http://speed.myzone.cn/WindowsXP_SP2.exe", savePath, new DownProgressListener() {
             @Override
@@ -123,8 +113,8 @@ public class HttpDemoFragment extends SFragment {
     }
 
     @Click
-    public void btnDownloadCancel() {
-        if (downFileRequest != null) {
+    public void btnDownloadCancel(){
+        if(downFileRequest!=null) {
             downFileRequest.cancel();
             PToast.show("下载已取消");
         }
@@ -132,8 +122,7 @@ public class HttpDemoFragment extends SFragment {
 
     @Click
     public void btnUpload() {
-
-        uploadRequest = Client.upload(Environment.getExternalStorageDirectory().getPath() + "/1.png", new UploadListener<String>() {
+        uploadRequest = Client.upload("/sdcard/hello.txt", new UploadListener<String>() {
             @Override
             public void onUpload(long uploadBytes, long totalLength) {
                 System.out.println("已上传:" + uploadBytes + "总长:" + totalLength);
@@ -147,15 +136,14 @@ public class HttpDemoFragment extends SFragment {
 
             @Override
             public void onError(PRequest request, Exception e) {
-                PLog.e(this, "error");
-                e.printStackTrace();
+
             }
         });
     }
 
     @Click
-    public void btnUploadCancel() {
-        if (uploadRequest != null)
+    public void btnUploadCancel(){
+        if(uploadRequest!=null)
             uploadRequest.cancel();
     }
 

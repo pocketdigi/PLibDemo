@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.pocketdigi.plib.core.PFragment;
 import com.pocketdigi.plib.core.PLog;
 import com.pocketdigi.plib.util.DeviceUtils;
+import com.pocketdigi.plib.util.PermissionUtil;
 import com.umeng.analytics.MobclickAgent;
 
 import org.androidannotations.annotations.AfterViews;
@@ -23,10 +24,10 @@ import org.androidannotations.annotations.EFragment;
 public abstract class SFragment extends PFragment {
     Bundle resultArgs;
     int resultCode;
-    public static final String BUNDLE_KEY_REFRESH = "refresh_page";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PermissionUtil.getInstance().checkPermissions(this);
     }
     public void onResume() {
         super.onResume();
@@ -125,7 +126,7 @@ public abstract class SFragment extends PFragment {
         registerListenerOrReceiver();
         Bundle resultArgs = getResultArgs();
         if(resultArgs!=null) {
-            boolean refresh = resultArgs.getBoolean(BUNDLE_KEY_REFRESH, false);
+            boolean refresh = resultArgs.getBoolean(PageManager.BUNDLE_REFRESH, false);
             if(refresh) {
                 //需要刷新
                 needRefresh();
