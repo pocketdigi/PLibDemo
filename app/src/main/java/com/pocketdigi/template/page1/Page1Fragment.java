@@ -35,7 +35,9 @@ public class Page1Fragment extends SFragment {
     protected void onReShow() {
         super.onReShow();
         Bundle resultArgs = getResultArgs();
-        PLog.d(this,resultArgs.getString(Page2Fragment.BUNDLE_KEY_ARG));
+        if(resultArgs!=null) {
+            PLog.d(this, resultArgs.getString(Page2Fragment.BUNDLE_KEY_ARG));
+        }
     }
 
     @Override
