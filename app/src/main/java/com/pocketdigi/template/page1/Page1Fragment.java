@@ -7,6 +7,7 @@ import com.pocketdigi.core.SFragment;
 import com.pocketdigi.plib.core.PLog;
 import com.pocketdigi.template.R;
 import com.pocketdigi.template.http.HttpDemoFragment_;
+import com.pocketdigi.template.imagelist.ImageListFragment_;
 import com.pocketdigi.template.page2.Page2Fragment;
 import com.pocketdigi.template.page2.Page2Fragment_;
 
@@ -26,10 +27,14 @@ public class Page1Fragment extends SFragment {
 
 
     @Click
-    public void btn4() {
+    public void btn2() {
         PageManager.getInstance().showPage(HttpDemoFragment_.class);
     }
 
+    @Click
+    public void btn3() {
+        PageManager.getInstance().showPage(ImageListFragment_.class);
+    }
 
     @Override
     protected void onReShow() {
